@@ -2,7 +2,7 @@
 
 **Aluno:** Gustavo de Souza Teixeira
 **Turma:** (preencher)
-**Site publicado:** https://SEU-USUARIO.github.io/portfolio/
+**Site publicado:** https://Gustavo-STeixeira.github.io/portfolio/
 
 ## Prints do site
 
