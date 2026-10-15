@@ -1,0 +1,404 @@
+/* ==========================================================
+   VARIÁVEIS
+   Paleta inspirada na foto de perfil: verde-oliva, dourado e
+   o azul acinzentado do lago.
+   ========================================================== */
+:root {
+    --cor-fundo: #eef1ea;
+    --cor-superficie: #ffffff;
+    --cor-texto: #1b251e;
+    --cor-texto-suave: #4a5a4f;
+    --cor-principal: #1e2d24;
+    --cor-destaque: #d9a21b;
+    --cor-lago: #7fa3a8;
+    --cor-borda: #d3dacd;
+
+    --fonte-titulo: "Bricolage Grotesque", "Segoe UI", sans-serif;
+    --fonte-texto: "IBM Plex Sans", "Segoe UI", sans-serif;
+
+    --espaco: 1.5rem;
+    --raio: 14px;
+    --largura-max: 1100px;
+}
+
+/* ==========================================================
+   BASE
+   ========================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+}
+
+body {
+    font-family: var(--fonte-texto);
+    color: var(--cor-texto);
+    background: var(--cor-fundo);
+    line-height: 1.65;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+}
+
+a:focus-visible {
+    outline: 3px solid var(--cor-destaque);
+    outline-offset: 3px;
+}
+
+h1, h2, h3 {
+    font-family: var(--fonte-titulo);
+    line-height: 1.15;
+}
+
+/* ==========================================================
+   CABEÇALHO E MENU (Flexbox)
+   ========================================================== */
+.topo {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--cor-principal);
+    color: #fff;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--espaco);
+    max-width: var(--largura-max);
+    margin: 0 auto;
+    padding: 1rem var(--espaco);
+}
+
+.menu__logo {
+    font-family: var(--fonte-titulo);
+    font-weight: 800;
+    font-size: 1.25rem;
+    text-decoration: none;
+}
+
+.menu__links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.menu__links a {
+    text-decoration: none;
+    font-weight: 500;
+    padding-bottom: 0.2rem;
+    border-bottom: 2px solid transparent;
+}
+
+.menu__links a:hover {
+    border-bottom-color: var(--cor-destaque);
+}
+
+/* ==========================================================
+   SOBRE (Grid com grid-template-areas)
+   ========================================================== */
+.sobre {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    grid-template-areas:
+        "foto nome"
+        "foto area"
+        "foto texto";
+    align-content: center;
+    column-gap: 4rem;
+    row-gap: 0.75rem;
+    max-width: var(--largura-max);
+    min-height: 80vh;
+    margin: 0 auto;
+    padding: 4rem var(--espaco);
+}
+
+.sobre__foto {
+    grid-area: foto;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--raio);
+    border-bottom: 8px solid var(--cor-destaque);
+    justify-self: center;
+}
+
+.sobre__nome {
+    grid-area: nome;
+    align-self: end;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 800;
+    color: var(--cor-principal);
+}
+
+.sobre__area {
+    grid-area: area;
+    font-family: var(--fonte-titulo);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--cor-texto-suave);
+}
+
+.sobre__texto {
+    grid-area: texto;
+    max-width: 55ch;
+    margin-top: 0.75rem;
+}
+
+/* ==========================================================
+   SEÇÕES (estrutura comum)
+   ========================================================== */
+.secao {
+    max-width: var(--largura-max);
+    margin: 0 auto;
+    padding: 4rem var(--espaco);
+    border-top: 1px solid var(--cor-borda);
+}
+
+.secao__titulo {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    color: var(--cor-principal);
+    margin-bottom: 2rem;
+}
+
+/* ==========================================================
+   HABILIDADES (Grid)
+   ========================================================== */
+.habilidades {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--espaco);
+}
+
+.habilidade {
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    padding: var(--espaco);
+}
+
+.habilidade h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+/* Etiquetas (Flexbox com quebra de linha) */
+.etiquetas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.etiquetas li {
+    background: var(--cor-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: 999px;
+    padding: 0.2rem 0.8rem;
+    font-size: 0.9rem;
+}
+
+/* ==========================================================
+   PROJETOS (Grid de cards + Flexbox interno)
+   ========================================================== */
+.projetos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--espaco);
+}
+
+.cartao {
+    display: flex;
+    flex-direction: column;
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    overflow: hidden;
+}
+
+.cartao img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+}
+
+.cartao__corpo {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.75rem;
+    padding: var(--espaco);
+}
+
+.cartao__corpo h3 {
+    font-size: 1.15rem;
+}
+
+.cartao__corpo p {
+    flex: 1;
+    color: var(--cor-texto-suave);
+    font-size: 0.95rem;
+}
+
+.botao {
+    align-self: flex-start;
+    background: var(--cor-principal);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.55rem 1.1rem;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.botao:hover {
+    background: var(--cor-destaque);
+    color: var(--cor-principal);
+}
+
+/* ==========================================================
+   FORMAÇÃO E EXPERIÊNCIA (Grid)
+   ========================================================== */
+.formacao {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--espaco);
+}
+
+.formacao__item {
+    padding-left: 1.25rem;
+    border-left: 4px solid var(--cor-lago);
+}
+
+.formacao__item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.formacao__local {
+    font-weight: 500;
+    color: var(--cor-texto-suave);
+    margin-bottom: 0.5rem;
+}
+
+/* ==========================================================
+   CONTATO (Flexbox)
+   ========================================================== */
+.contato {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.contato a {
+    display: block;
+    background: var(--cor-principal);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.8rem 1.6rem;
+    border-radius: 8px;
+}
+
+.contato a:hover {
+    background: var(--cor-destaque);
+    color: var(--cor-principal);
+}
+
+/* ==========================================================
+   RODAPÉ (Flexbox)
+   ========================================================== */
+.rodape {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--espaco);
+    padding: 1.5rem max(var(--espaco), calc((100% - var(--largura-max)) / 2));
+    background: var(--cor-principal);
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.rodape__links {
+    display: flex;
+    gap: 1.25rem;
+}
+
+/* ==========================================================
+   RESPONSIVIDADE - TABLET (até 900px)
+   ========================================================== */
+@media (max-width: 900px) {
+    .habilidades {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .formacao {
+        grid-template-columns: 1fr;
+    }
+
+    .sobre {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "foto"
+            "nome"
+            "area"
+            "texto";
+        min-height: auto;
+        text-align: center;
+    }
+
+    .sobre__texto {
+        margin-inline: auto;
+    }
+}
+
+/* ==========================================================
+   RESPONSIVIDADE - CELULAR (até 600px)
+   ========================================================== */
+@media (max-width: 600px) {
+    .menu {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .menu__links {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .habilidades {
+        grid-template-columns: 1fr;
+    }
+
+    .contato {
+        flex-direction: column;
+    }
+
+    .contato a {
+        text-align: center;
+    }
+
+    .rodape {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
